@@ -21,6 +21,15 @@ public class FindBeerActivity extends AppCompatActivity {
 
         Spinner color = (Spinner) findViewById(R.id.color);
         String beerType = String.valueOf(color.getSelectedItem());
-        brands.setText(beerType);
+
+        //Get recommendations from BeerExpert class
+        List<String> brandList = expert.getBrands(beerType);
+        StringBuilder brandsFormatted = new StringBuilder();
+
+        for (String brand: brandList) {
+            brandsFormatted.append(brand).append('\n');
+        }
+
+        brands.setText(brandsFormatted);
     }
 }
